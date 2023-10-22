@@ -24,13 +24,6 @@
                 <span asp-validation-for="Authors.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Authors.ID">Author</label>
-                <select asp-for="Authors.ID" asp-items="ViewBag.Authors" class="form-control">
-                    <option value="">Select an author</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

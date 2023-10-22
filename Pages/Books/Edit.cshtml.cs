@@ -37,8 +37,8 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Books
             }
             Book = book;
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Authors>(), "ID", "FirstName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Authors>(), "ID", "LastName");
+            var authors = _context.Authors.Select(a => new { a.ID, FullName = $"{a.FirstName} {a.LastName}" }).ToList();
+            ViewData["AuthorID"] = new SelectList(authors, "ID", "FullName");
             return Page();
         }
 
@@ -48,6 +48,7 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Books
         {
             if (!ModelState.IsValid)
             {
+                
                 return Page();
             }
 

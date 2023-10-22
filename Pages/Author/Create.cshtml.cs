@@ -35,7 +35,7 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Author
             {
                 return Page();
             }
-
+           
             _context.Authors.Add(Authors);
             await _context.SaveChangesAsync();
 

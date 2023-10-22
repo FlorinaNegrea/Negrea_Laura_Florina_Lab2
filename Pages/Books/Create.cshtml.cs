@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Negrea_Laura_Florina_Lab2.Data;
+using Negrea_Laura_Florina_Lab2.Migrations;
 using Negrea_Laura_Florina_Lab2.Models;
 
 namespace Negrea_Laura_Florina_Lab2.Pages.Books
@@ -21,9 +22,9 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Books
 
         public IActionResult OnGet()
         {
+            var authors = _context.Authors.Select(a => new { a.ID, FullName = $"{a.FirstName} {a.LastName}" }).ToList();
+            ViewData["AuthorID"] = new SelectList(authors, "ID", "FullName");
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Authors>(), "ID", "FirstName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Authors>(), "ID", "LastName");
             return Page();
         }
 
@@ -36,6 +37,7 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Books
         {
           if (!ModelState.IsValid || _context.Book == null || Book == null)
             {
+            
                 return Page();
             }
 
