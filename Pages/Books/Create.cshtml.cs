@@ -24,6 +24,7 @@ namespace Negrea_Laura_Florina_Lab2.Pages.Books
         {
             var authors = _context.Authors.Select(a => new { a.ID, FullName = $"{a.FirstName} {a.LastName}" }).ToList();
             ViewData["AuthorID"] = new SelectList(authors, "ID", "FullName");
+
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             return Page();
         }

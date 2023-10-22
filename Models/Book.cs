@@ -13,6 +13,8 @@ namespace Negrea_Laura_Florina_Lab2.Models
 
         public int? AuthorID { get; set; }
         public Authors? Author { get; set; }
+
+        public string AuthorName => $"{Author.FirstName} {Author.LastName}";
         public decimal Price { get; set; }
 
         [DataType(DataType.Date)]
