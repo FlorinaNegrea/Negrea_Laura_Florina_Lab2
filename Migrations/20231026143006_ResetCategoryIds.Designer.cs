@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Negrea_Laura_Florina_Lab2.Data;
 
@@ -11,9 +12,10 @@ using Negrea_Laura_Florina_Lab2.Data;
 namespace Negrea_Laura_Florina_Lab2.Migrations
 {
     [DbContext(typeof(Negrea_Laura_Florina_Lab2Context))]
-    partial class Negrea_Laura_Florina_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20231026143006_ResetCategoryIds")]
+    partial class ResetCategoryIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

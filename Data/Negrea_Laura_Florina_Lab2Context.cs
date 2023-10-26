@@ -19,5 +19,7 @@ namespace Negrea_Laura_Florina_Lab2.Data
         public DbSet<Negrea_Laura_Florina_Lab2.Models.Publisher>? Publisher { get; set; }
 
         public DbSet<Negrea_Laura_Florina_Lab2.Models.Authors>? Authors { get; set; }
+
+        public DbSet<Negrea_Laura_Florina_Lab2.Models.Category>? Category { get; set; }
     }
 }
