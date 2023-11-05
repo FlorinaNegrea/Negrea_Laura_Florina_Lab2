@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Negrea_Laura_Florina_Lab2.Data;
 
@@ -11,9 +12,10 @@ using Negrea_Laura_Florina_Lab2.Data;
 namespace Negrea_Laura_Florina_Lab2.Migrations
 {
     [DbContext(typeof(Negrea_Laura_Florina_Lab2Context))]
-    partial class Negrea_Laura_Florina_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20231104105540_IndexCategory3")]
+    partial class IndexCategory3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +56,9 @@ namespace Negrea_Laura_Florina_Lab2.Migrations
                     b.Property<int?>("AuthorID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -70,6 +75,8 @@ namespace Negrea_Laura_Florina_Lab2.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AuthorID");
+
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("PublisherID");
 
@@ -136,8 +143,12 @@ namespace Negrea_Laura_Florina_Lab2.Migrations
             modelBuilder.Entity("Negrea_Laura_Florina_Lab2.Models.Book", b =>
                 {
                     b.HasOne("Negrea_Laura_Florina_Lab2.Models.Authors", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorID");
+
+                    b.HasOne("Negrea_Laura_Florina_Lab2.Models.Category", null)
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryID");
 
                     b.HasOne("Negrea_Laura_Florina_Lab2.Models.Publisher", "Publisher")
                         .WithMany("Books")
@@ -167,6 +178,11 @@ namespace Negrea_Laura_Florina_Lab2.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Negrea_Laura_Florina_Lab2.Models.Authors", b =>
+                {
+                    b.Navigation("Books");
+                });
+
             modelBuilder.Entity("Negrea_Laura_Florina_Lab2.Models.Book", b =>
                 {
                     b.Navigation("BookCategories");
@@ -175,6 +191,8 @@ namespace Negrea_Laura_Florina_Lab2.Migrations
             modelBuilder.Entity("Negrea_Laura_Florina_Lab2.Models.Category", b =>
                 {
                     b.Navigation("BookCategories");
+
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Negrea_Laura_Florina_Lab2.Models.Publisher", b =>
