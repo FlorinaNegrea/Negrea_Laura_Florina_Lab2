@@ -21,5 +21,15 @@ namespace Negrea_Laura_Florina_Lab2.Data
         public DbSet<Negrea_Laura_Florina_Lab2.Models.Authors>? Authors { get; set; }
 
         public DbSet<Negrea_Laura_Florina_Lab2.Models.Category>? Category { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>()
+                .HasOne(b => b.Borrowing)
+                .WithOne(b => b.Book)
+                .HasForeignKey<Borrowing>(b => b.BookID);
+        }
+        public DbSet<Negrea_Laura_Florina_Lab2.Models.Member>? Member { get; set; }
+        public DbSet<Negrea_Laura_Florina_Lab2.Models.Borrowing>? Borrowing { get; set; }
+
     }
 }
